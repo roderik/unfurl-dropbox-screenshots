@@ -34,6 +34,6 @@ jobs:
     name: Unfurl all Dropbox screenshot links
     steps:
       - name: Unfurl
-        uses: unfurl-dropbox-screenshots@v1
+        uses: roderik/unfurl-dropbox-screenshots@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
