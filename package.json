@@ -1,0 +1,41 @@
+{
+  "name": "unfurl-dropbox-screenshots",
+  "version": "1.0.0",
+  "description": "Unfurls Dropbox screenshot links into actual images",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && ncc build src/index.ts",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "pack": "ncc build",
+    "pretest": "npm run build",
+    "test": "jest",
+    "all": "npm run format && npm run lint && npm run build && npm test"
+  },
+  "author": "Roderik van der Veer <roderik@vanderveer.be>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roderik/unfurl-dropbox-screenshots.git"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "@zeit/ncc": "^0.22.0",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-github": "^3.4.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "jest": "^25.2.7",
+    "jest-circus": "^25.2.7",
+    "js-yaml": "^3.13.1",
+    "ts-jest": "^25.3.1"
+  }
+}
