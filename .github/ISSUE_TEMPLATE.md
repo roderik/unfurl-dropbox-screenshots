@@ -5,6 +5,9 @@ labels: test
 
 This is an automated test of the unfurling action
 
+# Regular link
+https://vanderveer.be
+
 # Dropbox link
 https://www.dropbox.com/s/7e7qjbmlahvvy09/Screenshot%202020-04-04%2010.25.23.png?dl=0
 

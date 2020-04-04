@@ -64,8 +64,14 @@ function imageReplace(text: string): string {
   const urlRegex = /((?<!\+)( |\n)(?:https?(?::\/\/))(?:www\.)?(?:[a-zA-Z\d-_.]+(?:(?:\.|@)[a-zA-Z\d]{2,})|localhost)(?:(?:[-a-zA-Z\d:%_+.~#!?&//=@]*)(?:[,](?![\s]))*)*)/g;
 
   return text.replace(urlRegex, (url) => {
-    const parsedURL = url.trim();
-    return `\n![](${parsedURL})`;
+    const trimmedUrl = url.trim();
+    const parsedURL = new URL(trimmedUrl);
+    if (parsedURL.hostname.includes('dropbox.com')) {
+      if (trimmedUrl.includes('.png') || trimmedUrl.includes('.gif') || trimmedUrl.includes('.jpg')) {
+        return `\n![](${trimmedUrl})`;
+      }
+    }
+    return `\n${url}`;
   });
 }
 
