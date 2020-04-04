@@ -1,23 +1,39 @@
 ![Build](https://github.com/roderik/unfurl-dropbox-screenshots/workflows/Build/badge.svg)
 
-# Hello world javascript action
+# Unfurl Dropbox screenshot links
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+I make a lot of issues in my daily job, and often they contain screenshots. 
+Dropbox captures them and upload them to my dropbox account, putting a link to the
+screenshot in my clipboard which I then paste into an issue.
+
+But this is really annoying for the people handling the issues since it takes another
+click to see the screenshot. And while Github does some unfurling, the links are not unfurled.
+
+So this action which you run on issue and comment creation will do so for you.
 
 ## Inputs
 
-### `who-to-greet`
+### `repo-token`
 
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-### `time`
-
-The time we greeted you.
+**Required** A GitHub access token with access to issues, ${{ secrets.GITHUB_TOKEN }} will do.
 
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+```yaml
+name: Issue
+
+on:
+  issue_comment:
+    types: [created, edited]
+  issues:
+    types: [opened, edited]
+
+jobs:
+  unfurl:
+    runs-on: ubuntu-latest
+    name: Unfurl all Dropbox screenshot links
+    steps:
+      - name: Unfurl
+        uses: unfurl-dropbox-screenshots@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

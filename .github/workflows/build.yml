@@ -3,17 +3,10 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  hello_world_job:
+  build-and-test:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Build and test
     steps:
-      - name: Free disk space
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          df -h
 
       # To use this repository's private action, you must check out the repository
       - name: Checkout
@@ -24,11 +17,15 @@ jobs:
           npm i
           npm test
 
-      - name: Hello world action step
+      - uses: JasonEtco/create-an-issue@v2
+        id: create-issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Process Issues
         uses: ./ # Uses an action in the root directory
-        id: hello
         with:
-          who-to-greet: 'Mona the Octocat'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Use the output from the `hello` step
       - name: Get the output time

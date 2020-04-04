@@ -1,13 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Unfurl Dropbox Screenshots'
+description: 'Replaces Dropbox screenshot urls with markdown image links'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  repo-token:  # id of input
+    description: 'A GitHub access token with access to issues'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: link
+  color: red

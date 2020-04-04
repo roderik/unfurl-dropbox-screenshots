@@ -4,11 +4,10 @@
   "description": "Unfurls Dropbox screenshot links into actual images",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && ncc build src/index.ts",
+    "build": "tsc && ncc build -s -m src/index.ts",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "pack": "ncc build",
     "pretest": "npm run build",
     "test": "jest",
     "all": "npm run format && npm run lint && npm run build && npm test"
@@ -21,7 +20,10 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.3",
-    "@actions/github": "^2.1.1"
+    "@actions/github": "^2.1.1",
+    "@types/linkify-it": "^2.1.0",
+    "linkify-it": "^2.2.0",
+    "url-regex": "^5.0.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
